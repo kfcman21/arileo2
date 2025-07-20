@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 시대, 우리 교육의 미래는? | 교사 연수 자료</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <script src="https://unpkg.com/heroicons@2.1.3/24/outline/index.js"></script>
+
+    <style>
+        /* Pretendard 폰트 적용 및 기본 스타일 */
+        body {
+            font-family: 'Pretendard', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* <details> 태그의 기본 화살표 숨기기 */
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary {
+            list-style: none;
+        }
+        /* AGI 경로 시각화를 위한 커스텀 스타일 */
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 100%;
+            height: 2px;
+            background-color: #0d9488; /* teal-600 */
+            z-index: -1;
+        }
+        /* 마지막 스텝에는 연결선 제거 */
+        .step-item:last-child .step-connector::after {
+            display: none;
+        }
+        /* 모바일에서는 세로 연결선 */
+        @media (max-width: 1023px) {
+            .step-connector::after {
+                top: 100%;
+                left: 50%;
+                width: 2px;
+                height: 4rem; /* 64px */
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-800 leading-relaxed">
+
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-sm shadow-md">
+        <nav class="container mx-auto px-4 lg:px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#top" class="text-xl font-bold text-teal-600 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V8.25a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 8.25v10.5A2.25 2.25 0 0 0 6.75 21Z" />
+                        </svg>
+                        <span>AI 시대 교육의 미래</span>
+                    </a>
+                </div>
+                
+                <div class="hidden lg:flex items-center space-x-4 text-sm font-medium text-slate-600">
+                    <a href="#chatgpt-revolution" class="hover:text-teal-600 transition-colors">🚀 AI 혁명</a>
+                    <a href="#history" class="hover:text-teal-600 transition-colors">📜 AI의 역사</a>
+                    <a href="#comparison" class="hover:text-teal-600 transition-colors">🧠 AI vs 천연지능</a>
+                    <a href="#agi-path" class="hover:text-teal-600 transition-colors">🛤️ AGI로 가는 길</a>
+                    <a href="#impact" class="hover:text-teal-600 transition-colors">💡 AI의 영향</a>
+                    <a href="#korea-status" class="hover:text-teal-600 transition-colors">🇰🇷 대한민국의 과제</a>
+                    <a href="#conclusion" class="hover:text-teal-600 transition-colors">🤔 함께 고민할 미래</a>
+                </div>
+
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="text-slate-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="hidden lg:hidden pb-4">
+                <a href="#chatgpt-revolution" class="block py-2 px-4 text-sm text-slate-600 hover:bg-teal-50 rounded">🚀 AI 혁명</a>
+                <a href="#history" class="block py-2 px-4 text-sm text-slate-600 hover:bg-teal-50 rounded">📜 AI의 역사</a>
+                <a href="#comparison" class="block py-2 px-4 text-sm text-slate-600 hover:bg-teal-50 rounded">🧠 AI vs 천연지능</a>
+                <a href="#agi-path" class="block py-2 px-4 text-sm text-slate-600 hover:bg-teal-50 rounded">🛤️ AGI로 가는 길</a>
+                <a href="#impact" class="block py-2 px-4 text-sm text-slate-600 hover:bg-teal-50 rounded">💡 AI의 영향</a>
+                <a href="#korea-status" class="block py-2 px-4 text-sm text-slate-600 hover:bg-teal-50 rounded">🇰🇷 대한민국의 과제</a>
+                <a href="#conclusion" class="block py-2 px-4 text-sm text-slate-600 hover:bg-teal-50 rounded">🤔 함께 고민할 미래</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto mt-8 p-4 md:p-6 lg:p-8">
+        
+        <section id="top" class="text-center mb-20">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">인공지능(AI), 우리 아이들 교육은 어떻게 달라져야 할까요?</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">AI 혁명의 현주소를 이해하고, 미래 교육의 방향을 함께 고민해보는 시간입니다.</p>
+
+            <div class="mt-12 max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg border border-slate-200">
+                <h3 class="text-2xl font-bold text-teal-700 mb-6 text-left">🎯 연수 목표</h3>
+                <ul class="space-y-4 text-left text-lg">
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-500 mt-1">✅</span>
+                        <span>인공지능(AI)의 <strong>현재 수준과 발전 과정</strong>을 이해합니다.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-500 mt-1">✅</span>
+                        <span>인공지능 혁명이 우리 <strong>삶과 사회에 미치는 영향</strong>을 파악합니다.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal-500 mt-1">✅</span>
+                        <span>대한민국의 <strong>인공지능 현황과 앞으로의 과제</strong>를 인식합니다.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section id="chatgpt-revolution" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-teal-500 pl-4 mb-8">🚀 AI 혁명의 시작, ChatGPT</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <p>AI 혁명의 시작은 바로 <strong>ChatGPT</strong>입니다. 처음 등장했을 때, 그 압도적인 성능에 전 세계가 놀랐습니다.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span class="text-sky-500 mt-1">✔️</span><span><strong>놀라운 능력:</strong> GPT-4 모델은 미국 변호사 시험을 상위 10% 성적으로 통과하고, 세상에 없던 새로운 일을 스스로 만들어내기도 합니다.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-sky-500 mt-1">✔️</span><span><strong>엄청난 파급력:</strong> 공개 두 달 만에 사용자 1억 명을 돌파했고, 이제는 없으면 안 될 도구로 자리 잡았습니다.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-sky-100 to-teal-100 p-6 rounded-xl shadow-md">
+                    <div class="bg-white/60 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-slate-700 mb-3">✨ AI는 어떤 존재인가?</h3>
+                        <p class="text-slate-600">인공지능은 단순한 도구를 넘어, 스스로 학습하고 발전하는 존재입니다. 특정 과제만 푸는 것을 넘어, 어떤 일이든 할 수 있는 <strong>'인공 일반 지능(AGI)'</strong>을 향해 나아가고 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
+                <div class="flex items-center gap-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-amber-500 flex-shrink-0">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                    </svg>
+                    <div>
+                        <h4 class="font-bold text-lg text-amber-800">새로운 시대를 여는 기술, 왜 이해해야 할까요?</h4>
+                        <p class="text-amber-700">AI는 정치 현안만큼이나 <strong>시급하고 위중한 문제</strong>입니다. 이 기술이 우리 삶을 어떻게 바꾸고, 인류의 정체성에 어떤 영향을 미칠지 이해하는 것은 미래를 준비하는 첫걸음입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="history" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-teal-500 pl-4 mb-8">📜 인공지능의 탄생과 발전</h2>
+            <div class="space-y-6">
+                <details class="bg-white p-6 rounded-lg shadow-sm transition-all duration-300 open:ring-2 open:ring-teal-300">
+                    <summary class="font-bold text-lg cursor-pointer flex justify-between items-center">
+                        초기 AI의 한계: '규칙 기반' 시스템
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-transform transform details-arrow">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </summary>
+                    <div class="mt-4 text-slate-600 space-y-4">
+                        <p>초기 AI는 <strong>사람이 모든 규칙을 직접 입력</strong>하는 방식이었습니다. 예를 들어 '고양이'를 식별하기 위해 "다리가 4개, 꼬리가 있고, 귀가 뾰족하다"와 같은 특징을 모두 알려주는 식이었죠.</p>
+                        <p>하지만 이 방식은 곧 한계에 부딪혔습니다. 세상에는 <strong>너무나 많은 '예외'</strong>가 존재하기 때문입니다. 다리가 세 개인 고양이, 귀가 접힌 고양이 등 모든 예외를 프로그래밍하는 것은 불가능에 가까웠고, 오히려 규칙이 많아질수록 성능이 떨어지는 문제가 발생했습니다.</p>
+                    </div>
+                </details>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-lg mb-2">💡 패러다임의 전환: '잠재된 패턴'의 발견</h3>
+                    <p class="text-slate-600">과학자들은 인간의 뇌가 규칙이 아닌 <strong>'잠재된 패턴'</strong>으로 정보를 처리한다는 사실에 주목했습니다. 어린 아이가 고양이와 개를 구분하는 기준을 말로 설명하긴 어려워도 쉽게 구분하는 것처럼요. 이 발견은 뇌의 작동 방식을 모방하는 새로운 AI 개발로 이어졌습니다.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-lg mb-2">🤖 AI의 작동 방식: 스스로 배우는 기계</h3>
+                    <p class="text-slate-600 mb-4">오늘날의 AI는 방대한 데이터를 통해 '잠재된 패턴'을 스스로 학습합니다. 예를 들어 고양이 사진 10만 장을 보여주면, AI는 사진들 사이의 공통된 특징(패턴)을 찾아내고, 어떤 특징이 '고양이'와 가장 관련이 깊은지 가중치를 부여하며 학습합니다. 이 과정에서 '고양이'를 가장 잘 알아볼 수 있는 <strong>최적의 조합(매개변수)</strong>을 스스로 찾아내는 것입니다.</p>
+                     <div class="mt-4 bg-teal-50 border-l-4 border-teal-400 p-4 rounded-r-lg">
+                        <h4 class="font-bold text-teal-800">핵심 모델: 트랜스포머 (Transformer)</h4>
+                        <p class="text-teal-700">ChatGPT가 사용하는 '트랜스포머' 모델은 수조 개의 단어와 문서를 학습하여 단어 간의 관계(맥락)를 거의 완벽에 가까운 지도로 만듭니다. 덕분에 확률적으로 가장 그럴듯한 다음 단어를 예측하여 자연스러운 문장을 생성할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-teal-500 pl-4 mb-8">🧠 인공지능 vs. 천연지능: 효율성 비교</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg border-2 border-sky-200 shadow-md">
+                    <h3 class="text-2xl font-bold text-sky-700 mb-4">👤 천연지능 (인간의 뇌)</h3>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><span class="font-bold text-sky-600">효율성:</span> <span>소수의 데이터만으로도 핵심을 파악하고 추상화(Abstraction)하는 데 능합니다.</span></li>
+                        <li class="flex gap-3"><span class="font-bold text-sky-600">학습법:</span> <span>고양이 2~3마리만 봐도 '고양이'라는 개념을 학습합니다.</span></li>
+                        <li class="flex gap-3"><span class="font-bold text-sky-600">처리방식:</span> <span>패턴으로 정보를 처리하며, 뇌가 능동적으로 정보를 해석하고 예측합니다. (뇌에서 눈으로 가는 데이터 > 눈에서 뇌로 가는 데이터)</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg border-2 border-orange-200 shadow-md">
+                    <h3 class="text-2xl font-bold text-orange-700 mb-4">🤖 인공지능</h3>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><span class="font-bold text-orange-600">효율성:</span> <span>아직 천연지능만큼 효율적이진 않으며, 막대한 데이터와 전력을 필요로 합니다.</span></li>
+                        <li class="flex gap-3"><span class="font-bold text-orange-600">학습법:</span> <span>고양이 패턴을 학습하기 위해 수십만 장의 데이터가 필요합니다.</span></li>
+                        <li class="flex gap-3"><span class="font-bold text-orange-600">처리방식:</span> <span>방대한 데이터를 기반으로 확률적으로 가장 그럴듯한 결과를 계산합니다.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="agi-path" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-teal-500 pl-4 mb-8">🛤️ AGI(인공 일반 지능)로 가는 길: 5단계 발전 과정</h2>
+            <p class="mb-12 max-w-3xl text-slate-600">OpenAI는 인간의 지능을 넘어서는 AGI로의 발전 과정을 5단계로 분류했습니다. 우리는 지금 어디쯤 와 있을까요?</p>
+
+            <div class="relative flex flex-col lg:flex-row justify-between items-center w-full gap-y-16 lg:gap-x-4 px-4">
+                <div class="step-item flex flex-col items-center text-center w-full lg:w-1/5">
+                    <div class="relative step-connector">
+                        <div class="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg">1</div>
+                    </div>
+                    <h3 class="font-bold text-xl mt-4">챗봇</h3>
+                    <p class="text-sm text-slate-500 mt-1">Chatbot</p>
+                    <p class="text-slate-600 mt-2 text-sm">기본적인 질문에 답하는 단계. (현재의 ChatGPT)</p>
+                </div>
+                <div class="step-item flex flex-col items-center text-center w-full lg:w-1/5">
+                    <div class="relative step-connector">
+                        <div class="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg">2</div>
+                    </div>
+                    <h3 class="font-bold text-xl mt-4">에이전트</h3>
+                    <p class="text-sm text-slate-500 mt-1">Agent</p>
+                    <p class="text-slate-600 mt-2 text-sm">우리를 대신해 PC 안의 프로그램을 실행하는 '조수'</p>
+                </div>
+                <div class="step-item flex flex-col items-center text-center w-full lg:w-1/5">
+                    <div class="relative step-connector">
+                        <div class="w-20 h-20 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg">3</div>
+                    </div>
+                    <h3 class="font-bold text-xl mt-4">추론가</h3>
+                    <p class="text-sm text-slate-500 mt-1">Reasoner</p>
+                    <p class="text-slate-600 mt-2 text-sm">심층 분석을 통해 전문가 수준의 보고서를 작성</p>
+                </div>
+                <div class="step-item flex flex-col items-center text-center w-full lg:w-1/5">
+                    <div class="relative step-connector">
+                        <div class="w-20 h-20 bg-teal-700 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg">4</div>
+                    </div>
+                    <h3 class="font-bold text-xl mt-4">혁신가</h3>
+                    <p class="text-sm text-slate-500 mt-1">Innovator</p>
+                    <p class="text-slate-600 mt-2 text-sm">세상에 없던 새로운 발견이나 창조</p>
+                </div>
+                <div class="step-item flex flex-col items-center text-center w-full lg:w-1/5">
+                     <div class="relative">
+                        <div class="w-20 h-20 bg-teal-800 rounded-full flex items-center justify-center text-white font-bold text-3xl shadow-lg">5</div>
+                    </div>
+                    <h3 class="font-bold text-xl mt-4">조직</h3>
+                    <p class="text-sm text-slate-500 mt-1">Organization</p>
+                    <p class="text-slate-600 mt-2 text-sm">거대하고 복잡한 일을 혼자서 수행</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-teal-500 pl-4 mb-8">💡 AI 발전의 동력과 그 영향</h2>
+            
+            <div class="mb-12 bg-sky-100 border-t-4 border-b-4 border-sky-300 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold text-sky-800 mb-4">🤯 AI의 거짓말? '환각(Hallucination)'의 두 얼굴</h3>
+                <p class="text-sky-700 mb-4">AI가 때때로 그럴싸한 거짓말을 하는 '환각' 현상은 초기에 문제로 지적되었습니다. 하지만 세계적인 AI 과학자 안드레이 카파티는 "환각은 버그가 아니라 <strong>AI의 상상력이자 창의성의 원천</strong>"이라고 말합니다. 이 기능이 없다면 AI는 단순 검색엔진에 불과할 것이라는 뜻입니다.</p>
+                <p class="text-sky-700">실제로 단백질 구조를 예측하는 AI '알파폴드'는 이 환각 기능을 활용해 탐색 범위를 넓혀 노벨상급의 성과를 냈습니다. AI의 환각은 <strong>인간의 상상이나 몽상</strong>과 같은 필수 기능인 셈입니다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-bold text-slate-700">🏃‍♂️ 몸을 가진 AI와 '맥락 인터페이스'의 등장</h3>
+                    <p>텀블링하는 로봇처럼 AI가 몸을 가지게 되고, 안경형 디바이스처럼 사용자의 모든 상황(맥락)을 공유하는 '맥락 인터페이스'가 등장하고 있습니다.</p>
+                    <p class="font-semibold text-orange-600">🚨 위험성: 사고 능력의 퇴화</p>
+                    <p>AI가 모든 것을 대신해주면 인간의 의존성이 극도로 높아져 <strong>생각하는 능력이 퇴화</strong>할 수 있습니다. AI 기기 소유 여부에 따른 <strong>계급적 격차</strong>가 발생하고, 소수의 엘리트와 다수의 일반인으로 사회가 분열될 위험도 제기됩니다.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                     <h3 class="text-xl font-bold text-slate-700">動力 AI 발전의 근본적인 동력</h3>
+                     <ul class="space-y-2">
+                         <li><strong>好奇心:</strong> 지능의 끝을 보고 싶은 과학자의 순수한 호기심</li>
+                         <li><strong>經濟:</strong> AI라는 새로운 산업을 선점하려는 경제적 욕구</li>
+                         <li><strong>戰爭:</strong> AI가 전쟁의 양상을 바꾸면서 생존을 위한 필수 기술로 부상</li>
+                     </ul>
+                     <p>AI는 전기나 증기기관처럼 모든 산업의 기반이 되는 <strong>'범용 기술'</strong>입니다. 이 기술의 패권을 쥐는 자가 미래의 돈과 권력을 모두 갖게 되는 것입니다.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="korea-status" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-teal-500 pl-4 mb-8">🇰🇷 대한민국의 AI 현주소와 과제</h2>
+            
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4">"1등이 모든 것을 독식하는 게임"</h3>
+                    <p class="text-slate-600">대한민국은 세계 AI 기술 3~7위권으로 평가받지만, 이는 의미 없는 순위입니다. 미국을 100으로 볼 때, 우리는 30점대에 불과하여 격차가 매우 큽니다. AI 경쟁은 <strong>'승자 독식'</strong> 게임이기 때문입니다.</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-orange-50 to-amber-100 p-8 rounded-lg border border-orange-200">
+                    <h3 class="text-2xl font-bold text-orange-800 mb-4">🌾 왜 우리만의 'AI 주권'이 필요한가?</h3>
+                    <p class="mb-4 text-orange-700">"쌀을 사 먹으면 되지, 왜 농사를 짓냐"고 말할 수 없듯이, AI도 우리 것을 만들어 <strong>'AI 주권'</strong>을 지켜야 합니다. 특화된 AI를 만들기 위해서도, 그 기반이 되는 거대 AI 모델이 반드시 필요하기 때문입니다. 기반 모델이 없으면, 똑똑한 응용 AI도 만들 수 없습니다.</p>
+                    <p class="text-orange-700">오픈 소스 AI에 의존하는 것은 위험합니다. 페이스북이 '라마' 모델 개발을 중단한 것처럼, 언제든 기반 기술 공급이 끊길 수 있습니다. <strong>국적 있는 AI</strong>가 없으면, 모든 산업에서 고립될 수 있습니다.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-700 mb-4">📉 대한민국의 AI 후퇴, 그 원인은?</h3>
+                    <p class="mb-4 text-slate-600">결정적인 시기였던 2023년, 국가 R&D 예산이 대폭 삭감되면서 우리나라 AI 연구가 급격히 위축되었습니다. 연구에 필수적인 GPU(그래픽 처리 장치)가 부족해지자, 최고 수준의 논문 수가 급감하고 우수한 석박사 인재들이 해외로 떠나고 있습니다.</p>
+                    <p class="font-semibold text-slate-800">"뛰어난 인재들에게 볼펜을 안 사줘서 글을 못 쓰게 한 것과 같다"는 비판처럼, 미래를 위한 투자가 시급한 상황입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 border-l-4 border-teal-500 pl-4 mb-8">🤔 함께 고민할 미래</h2>
+            
+            <div class="bg-cover bg-center rounded-2xl p-8 md:p-12 shadow-2xl" style="background-image: linear-gradient(rgba(0, 77, 64, 0.8), rgba(0, 77, 64, 0.8)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop');">
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6">비유: AI는 바다 위의 거대한 '새로운 대륙'</h3>
+                <div class="text-lg text-teal-100 space-y-4 max-w-4xl">
+                    <p>인공지능은 마치 과거 아무도 가보지 못했던 바다 위에 갑자기 나타난 <strong>거대한 '새로운 대륙'</strong>과 같습니다.</p>
+                    <p>이 대륙은 무한한 자원과 기회를 품고 있으며, 먼저 발견하고 개척하는 자에게는 막대한 부와 힘을 선사할 것입니다. 하지만 동시에 미지의 위험과 예측 불가능한 변화를 동반하며, 주도적으로 개척하지 못하는 이들은 고립되어 생존마저 위협받을 수 있습니다.</p>
+                    <p class="font-bold text-white mt-6">우리는 지금 이 새로운 대륙을 어떻게 탐험하고, 그 자원을 어떻게 활용하며, 우리 아이들이 그곳에서 어떤 미래를 그려나가도록 도울 것인지 신중하고 현명하게 결정해야 할 시점에 서 있습니다.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-20 py-8 bg-slate-100 border-t">
+        <div class="container mx-auto px-4 text-center text-sm text-slate-500">
+            <p>&copy; 2025 웹페이지 전문가. All rights reserved.</p>
+            <p class="mt-2">콘텐츠 출처: YouTube '사람사는세상노무현재단' 채널, 박태웅의 AI 강의 2025</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 모바일 메뉴 토글 스크립트
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 아코디언(details) 열릴 때 화살표 회전
+        const detailsElements = document.querySelectorAll('details');
+        detailsElements.forEach(details => {
+            details.addEventListener('toggle', event => {
+                const arrow = details.querySelector('.details-arrow');
+                if (details.open) {
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
